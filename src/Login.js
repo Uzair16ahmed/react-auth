@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 const Login = () => {
 
@@ -23,9 +25,16 @@ const Login = () => {
 
     axios(configuration)
     .then((res) => {
+      // set the cookie
+      cookies.set("TOKEN", res.data.token, {
+        path: "/",
+      });
+      // redirect user to the auth page
+      window.location.href = "/auth";
       // console.log(res);
       setLogin(true);
     })
+
     .catch((error) => {
       console.log(error);
       error = new Error();
