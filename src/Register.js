@@ -25,8 +25,14 @@ const Register = () => {
     };
 
     axios(configuration)
-    .then((result) => {console.log(result);})
-    .catch((error) => {console.log(error);})
+    .then((result) => {
+      // console.log(result);
+      setRegister(true);
+    })
+    .catch((error) => {
+      // console.log(error);
+      error = new Error();
+    })
   }
 
   return (
@@ -64,6 +70,11 @@ const Register = () => {
         >
           Register
         </Button>
+        {register ? (
+          <p className="text-success">You are Registered Successfully</p>
+        ) : (
+          <p className="text-danger">You are not Registered</p>
+        )}
       </Form>
     </>
   )
