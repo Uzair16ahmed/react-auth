@@ -1,11 +1,15 @@
 import { Container, Col, Row } from 'react-bootstrap';
 import './App.css';
-import { Route, Router, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import FreeComponent from './Components/FreeComponent';
 import AuthComponent from './Components/AuthComponent';
 import Account from './Account';
+import ProtectedRoutes from './ProtectedRoutes';
+
 
 function App() {
+  // const navigate=useNavigate()
+  // navigate("auth")
   return (
     <Container>
       <Row>
@@ -20,9 +24,9 @@ function App() {
         </Col>
       </Row>
       <Routes>
-        <Route exact path="/" component={Account}/>
-        <Route exact path="/free" component={FreeComponent}/>
-        <Route exact path="/auth" component={AuthComponent}/>
+        <Route exact path="/" Component={Account}/>
+        <Route exact path="/free" Component={FreeComponent}/>
+        <Route element={<ProtectedRoutes path="/auth"/>} />
       </Routes>
 
     </Container>
