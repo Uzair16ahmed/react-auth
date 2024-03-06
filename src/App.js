@@ -1,10 +1,10 @@
 import { Container, Col, Row } from 'react-bootstrap';
 import './App.css';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import FreeComponent from './Components/FreeComponent';
-import AuthComponent from './Components/AuthComponent';
 import Account from './Account';
 import ProtectedRoutes from './ProtectedRoutes';
+import AuthComponent from './Components/AuthComponent';
 
 
 function App() {
@@ -26,7 +26,8 @@ function App() {
       <Routes>
         <Route exact path="/" Component={Account}/>
         <Route exact path="/free" Component={FreeComponent}/>
-        <Route element={<ProtectedRoutes path="/auth"/>} />
+        {/* <Route element={<ProtectedRoutes path="/auth" Component={AuthComponent}/>} /> */}
+        <ProtectedRoutes path="/auth" Component={AuthComponent}/>
       </Routes>
 
     </Container>
